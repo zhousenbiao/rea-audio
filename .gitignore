@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.egg-info/
+build/
+dist/
+.zcode/
+smoke.wav
+smoke.case/
+eval/fixtures/
+*.case/
+cases/demo/*.wav

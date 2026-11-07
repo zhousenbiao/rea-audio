@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>rea-audio 逆向报告 — human_like_demo.wav</title>
+<style>
+  :root { color-scheme: light; }
+  body { font-family: -apple-system, "Segoe UI", "Microsoft YaHei", sans-serif;
+         margin: 0; background: #f6f7f9; color: #1c2733; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 28px 20px 60px; }
+  header h1 { font-size: 22px; margin: 0 0 4px; }
+  header .src { color: #5b6b7b; font-size: 14px; }
+  .verdict { display: inline-block; margin: 14px 0 6px; padding: 8px 14px; border-radius: 8px;
+             color: #fff; font-weight: 600; }
+  .counts { color: #5b6b7b; font-size: 13px; margin-bottom: 20px; }
+  .card { background: #fff; border: 1px solid #e3e8ee; border-left: 4px solid #999;
+          border-radius: 10px; padding: 14px 16px; margin: 12px 0; }
+  .card.fact { border-left-color: #0a7d33; }
+  .card.hyp  { border-left-color: #b8860b; }
+  .card.unk  { border-left-color: #666; opacity: .92; }
+  .head { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .badge { color: #fff; font-size: 11px; padding: 2px 8px; border-radius: 20px; }
+  .ftitle { font-weight: 700; }
+  .fconf { margin-left: auto; color: #5b6b7b; font-size: 12px; }
+  .concl { margin: 8px 0 10px; line-height: 1.55; }
+  table.ev { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.ev th { text-align: left; color: #8b98a5; font-weight: 500; padding: 2px 6px 4px 0; }
+  table.ev td { padding: 3px 6px 3px 0; border-top: 1px dashed #edf0f3; vertical-align: top; }
+  td.m { color: #2b3a4a; white-space: nowrap; }
+  td.v { font-family: ui-monospace, Consolas, monospace; }
+  td.d { color: #7a8794; }
+  .snap { font-size: 12px; color: #7a8794; margin-top: 8px; }
+  .caveats { color: #8a6d3b; font-size: 12.5px; margin: 8px 0 0; padding-left: 18px; }
+  footer { margin-top: 26px; color: #93a1ad; font-size: 12px; line-height: 1.6; }
+</style>
+</head>
+<body><div class="wrap">
+<header>
+  <h1>rea-audio 逆向报告</h1>
+  <div class="src">case: human_like_demo.wav</div>
+  <div class="verdict" style="background:#0a7d33">来源判定: HUMAN-MADE</div>
+  <div class="counts">5 事实 · 2 假设 · 0 未知</div>
+</header>
+
+<div class="card fact">
+  <div class="head">
+    <span class="badge" style="background:#0a7d33">事实 / FACT</span>
+    <span class="ftitle">Container & stream facts</span>
+    <span class="fconf">100% 置信度</span>
+  </div>
+  <p class="concl">WAV PCM_16, 44100 Hz, 2ch, 24.0s, ~1411 kbps</p>
+  <table class="ev"><thead><tr><th>证据</th><th></th><th></th></tr></thead>
+  <tbody><tr><td class='m'>container</td><td class='v'>WAV</td><td class='d'></td></tr><tr><td class='m'>codec/subtype</td><td class='v'>PCM_16</td><td class='d'></td></tr><tr><td class='m'>sample rate</td><td class='v'>44100</td><td class='d'></td></tr><tr><td class='m'>channels</td><td class='v'>2</td><td class='d'></td></tr><tr><td class='m'>duration</td><td class='v'>24</td><td class='d'></td></tr><tr><td class='m'>mean bitrate</td><td class='v'>1411</td><td class='d'>file size / duration; lossy codecs only — never proof of provenance by itself</td></tr></tbody></table>
+  
+  
+</div>
+<div class="card fact">
+  <div class="head">
+    <span class="badge" style="background:#0a7d33">事实 / FACT</span>
+    <span class="ftitle">Tempo & feel</span>
+    <span class="fconf">74% 置信度</span>
+  </div>
+  <p class="concl">95.2 BPM</p>
+  <table class="ev"><thead><tr><th>证据</th><th></th><th></th></tr></thead>
+  <tbody><tr><td class='m'>autocorrelation peak BPM</td><td class='v'>95.23</td><td class='d'>peak strength 0.24</td></tr><tr><td class='m'>candidate peaks</td><td class='v'>95.2, 174.1, 190.2, 62.1</td><td class='d'>sorted by autocorrelation strength</td></tr><tr><td class='m'>onset envelope std</td><td class='v'>1</td><td class='d'>rhythmic clarity proxy; near 1.0 after normalization means clear transients</td></tr></tbody></table>
+  
+  
+</div>
+<div class="card fact">
+  <div class="head">
+    <span class="badge" style="background:#0a7d33">事实 / FACT</span>
+    <span class="ftitle">Key & chords</span>
+    <span class="fconf">81% 置信度</span>
+  </div>
+  <p class="concl">Key: C major; progression: C×10</p>
+  <table class="ev"><thead><tr><th>证据</th><th></th><th></th></tr></thead>
+  <tbody><tr><td class='m'>key correlation</td><td class='v'>0.807</td><td class='d'>Krumhansl-Schmuckler profile match</td></tr><tr><td class='m'>runner-up keys</td><td class='v'>C minor, E minor, A minor</td><td class='d'>r = 0.56; a close runner-up means the material is modally ambiguous</td></tr><tr><td class='m'>global chroma (C..B)</td><td class='v'>0.195, 0.078, 0.071, 0.063, 0.124, 0.05, 0.068, 0.107…</td><td class='d'></td></tr><tr><td class='m'>chord grid</td><td class='v'>2.52</td><td class='d'>4 beats @ analyzed tempo</td></tr></tbody></table>
+  <div class='snap'>观测快照 — global chroma (C..B)</div><svg viewBox="0 0 100 60" preserveAspectRatio="none" style="width:100%;height:60px;display:block" fill="#0a7d33"><rect x="1.25" y="0.00" width="5.83" height="60.00" rx="1"/><rect x="9.58" y="44.56" width="5.83" height="15.44" rx="1"/><rect x="17.92" y="47.32" width="5.83" height="12.68" rx="1"/><rect x="26.25" y="50.36" width="5.83" height="9.64" rx="1"/><rect x="34.58" y="27.22" width="5.83" height="32.78" rx="1"/><rect x="42.92" y="55.00" width="5.83" height="5.00" rx="1"/><rect x="51.25" y="48.40" width="5.83" height="11.60" rx="1"/><rect x="59.58" y="33.48" width="5.83" height="26.52" rx="1"/><rect x="67.92" y="51.85" width="5.83" height="8.15" rx="1"/><rect x="76.25" y="52.42" width="5.83" height="7.58" rx="1"/><rect x="84.58" y="52.25" width="5.83" height="7.75" rx="1"/><rect x="92.92" y="47.25" width="5.83" height="12.75" rx="1"/></svg><div style='display:flex;font-size:10px;color:#7a8794;margin-top:2px'><span style='flex:1;text-align:center'>C</span><span style='flex:1;text-align:center'>C#</span><span style='flex:1;text-align:center'>D</span><span style='flex:1;text-align:center'>D#</span><span style='flex:1;text-align:center'>E</span><span style='flex:1;text-align:center'>F</span><span style='flex:1;text-align:center'>F#</span><span style='flex:1;text-align:center'>G</span><span style='flex:1;text-align:center'>G#</span><span style='flex:1;text-align:center'>A</span><span style='flex:1;text-align:center'>A#</span><span style='flex:1;text-align:center'>B</span></div>
+  
+</div>
+<div class="card fact">
+  <div class="head">
+    <span class="badge" style="background:#0a7d33">事实 / FACT</span>
+    <span class="ftitle">Stereo field</span>
+    <span class="fconf">100% 置信度</span>
+  </div>
+  <p class="concl">L/R correlation 0.997 — narrow (near-mono); side/mid energy 0.04</p>
+  <table class="ev"><thead><tr><th>证据</th><th></th><th></th></tr></thead>
+  <tbody><tr><td class='m'>L/R correlation</td><td class='v'>0.997</td><td class='d'></td></tr><tr><td class='m'>side/mid RMS ratio</td><td class='v'>0.04</td><td class='d'>0 = pure mono, 0.2–0.6 common in mixes, >1 means phase-risky width</td></tr></tbody></table>
+  
+  
+</div>
+<div class="card fact">
+  <div class="head">
+    <span class="badge" style="background:#0a7d33">事实 / FACT</span>
+    <span class="ftitle">Spectral balance</span>
+    <span class="fconf">100% 置信度</span>
+  </div>
+  <p class="concl">Rolloff(-35 dB) 0.4 kHz; dominant band: bass</p>
+  <table class="ev"><thead><tr><th>证据</th><th></th><th></th></tr></thead>
+  <tbody><tr><td class='m'>rolloff frequency</td><td class='v'>400</td><td class='d'></td></tr><tr><td class='m'>air-band LTAS std</td><td class='v'>0.24</td><td class='d'>13–18 kHz roughness; analog noise floors wiggle more than synthetic ones</td></tr><tr><td class='m'>band energies</td><td class='v'>sub: 11.1, bass: 26, low-mid: 12.1, mid: -9.3, high-mid: -11.2, presence: -12.3, brilliance: -13.2, air: -13.7</td><td class='d'></td></tr><tr><td class='m'>LTAS snapshot</td><td class='v'></td><td class='d'>long-term average spectrum, log-spaced decimation</td></tr></tbody></table>
+  <div class='snap'>观测快照 — LTAS snapshot</div><svg viewBox="0 0 100 60" preserveAspectRatio="none" style="width:100%;height:60px;display:block" fill="#0a7d33"><rect x="0.24" y="0.00" width="1.11" height="60.00" rx="1"/><rect x="1.83" y="29.69" width="1.11" height="30.31" rx="1"/><rect x="3.41" y="41.07" width="1.11" height="18.93" rx="1"/><rect x="5.00" y="42.97" width="1.11" height="17.03" rx="1"/><rect x="6.59" y="44.85" width="1.11" height="15.15" rx="1"/><rect x="8.17" y="45.05" width="1.11" height="14.95" rx="1"/><rect x="9.76" y="45.55" width="1.11" height="14.45" rx="1"/><rect x="11.35" y="46.59" width="1.11" height="13.41" rx="1"/><rect x="12.94" y="47.65" width="1.11" height="12.35" rx="1"/><rect x="14.52" y="46.58" width="1.11" height="13.42" rx="1"/><rect x="16.11" y="47.63" width="1.11" height="12.37" rx="1"/><rect x="17.70" y="49.48" width="1.11" height="10.52" rx="1"/><rect x="19.29" y="49.44" width="1.11" height="10.56" rx="1"/><rect x="20.87" y="49.37" width="1.11" height="10.63" rx="1"/><rect x="22.46" y="50.24" width="1.11" height="9.76" rx="1"/><rect x="24.05" y="51.40" width="1.11" height="8.60" rx="1"/><rect x="25.63" y="50.78" width="1.11" height="9.22" rx="1"/><rect x="27.22" y="50.54" width="1.11" height="9.46" rx="1"/><rect x="28.81" y="51.08" width="1.11" height="8.92" rx="1"/><rect x="30.40" y="51.60" width="1.11" height="8.40" rx="1"/><rect x="31.98" y="50.44" width="1.11" height="9.56" rx="1"/><rect x="33.57" y="51.75" width="1.11" height="8.25" rx="1"/><rect x="35.16" y="51.49" width="1.11" height="8.51" rx="1"/><rect x="36.75" y="51.59" width="1.11" height="8.41" rx="1"/><rect x="38.33" y="51.63" width="1.11" height="8.37" rx="1"/><rect x="39.92" y="52.99" width="1.11" height="7.01" rx="1"/><rect x="41.51" y="52.90" width="1.11" height="7.10" rx="1"/><rect x="43.10" y="52.70" width="1.11" height="7.30" rx="1"/><rect x="44.68" y="52.40" width="1.11" height="7.60" rx="1"/><rect x="46.27" y="53.94" width="1.11" height="6.06" rx="1"/><rect x="47.86" y="52.50" width="1.11" height="7.50" rx="1"/><rect x="49.44" y="52.44" width="1.11" height="7.56" rx="1"/><rect x="51.03" y="52.26" width="1.11" height="7.74" rx="1"/><rect x="52.62" y="52.87" width="1.11" height="7.13" rx="1"/><rect x="54.21" y="52.22" width="1.11" height="7.78" rx="1"/><rect x="55.79" y="52.46" width="1.11" height="7.54" rx="1"/><rect x="57.38" y="53.58" width="1.11" height="6.42" rx="1"/><rect x="58.97" y="54.02" width="1.11" height="5.98" rx="1"/><rect x="60.56" y="53.54" width="1.11" height="6.46" rx="1"/><rect x="62.14" y="53.53" width="1.11" height="6.47" rx="1"/><rect x="63.73" y="53.87" width="1.11" height="6.13" rx="1"/><rect x="65.32" y="52.91" width="1.11" height="7.09" rx="1"/><rect x="66.90" y="52.57" width="1.11" height="7.43" rx="1"/><rect x="68.49" y="53.11" width="1.11" height="6.89" rx="1"/><rect x="70.08" y="53.04" width="1.11" height="6.96" rx="1"/><rect x="71.67" y="52.39" width="1.11" height="7.61" rx="1"/><rect x="73.25" y="52.77" width="1.11" height="7.23" rx="1"/><rect x="74.84" y="53.97" width="1.11" height="6.03" rx="1"/><rect x="76.43" y="53.52" width="1.11" height="6.48" rx="1"/><rect x="78.02" y="53.56" width="1.11" height="6.44" rx="1"/><rect x="79.60" y="54.31" width="1.11" height="5.69" rx="1"/><rect x="81.19" y="54.84" width="1.11" height="5.16" rx="1"/><rect x="82.78" y="53.17" width="1.11" height="6.83" rx="1"/><rect x="84.37" y="53.37" width="1.11" height="6.63" rx="1"/><rect x="85.95" y="53.31" width="1.11" height="6.69" rx="1"/><rect x="87.54" y="53.36" width="1.11" height="6.64" rx="1"/><rect x="89.13" y="52.90" width="1.11" height="7.10" rx="1"/><rect x="90.71" y="53.01" width="1.11" height="6.99" rx="1"/><rect x="92.30" y="54.15" width="1.11" height="5.85" rx="1"/><rect x="93.89" y="53.56" width="1.11" height="6.44" rx="1"/><rect x="95.48" y="53.89" width="1.11" height="6.11" rx="1"/><rect x="97.06" y="54.46" width="1.11" height="5.54" rx="1"/><rect x="98.65" y="55.00" width="1.11" height="5.00" rx="1"/></svg><div style='display:flex;font-size:10px;color:#7a8794;margin-top:2px'><span style='flex:1;text-align:center'>0.1k</span><span style='flex:1;text-align:center'>2.1k</span><span style='flex:1;text-align:center'>4.2k</span><span style='flex:1;text-align:center'>6.3k</span><span style='flex:1;text-align:center'>8.4k</span><span style='flex:1;text-align:center'>10.6k</span><span style='flex:1;text-align:center'>12.7k</span><span style='flex:1;text-align:center'>14.8k</span><span style='flex:1;text-align:center'>16.9k</span><span style='flex:1;text-align:center'>18.9k</span><span style='flex:1;text-align:center'>21.1k</span></div>
+  
+</div>
+<div class="card hyp">
+  <div class="head">
+    <span class="badge" style="background:#b8860b">假设 / HYPOTHESIS</span>
+    <span class="ftitle">Song structure</span>
+    <span class="fconf">55% 置信度</span>
+  </div>
+  <p class="concl">3 sections: 0:00–0:02 quiet/breakdown | 0:02–0:21 mid energy | 0:21–0:24 mid energy</p>
+  <table class="ev"><thead><tr><th>证据</th><th></th><th></th></tr></thead>
+  <tbody><tr><td class='m'>novelty boundaries</td><td class='v'>2.2s, 21.2s</td><td class='d'>chroma+spectral change points, min spacing 8 s</td></tr><tr><td class='m'>section count</td><td class='v'>3</td><td class='d'></td></tr></tbody></table>
+  
+  <ul class='caveats'><li>Section labels are energy-based guesses; a human would also use lyrics/instrumentation.</li></ul>
+</div>
+<div class="card hyp">
+  <div class="head">
+    <span class="badge" style="background:#b8860b">假设 / HYPOTHESIS</span>
+    <span class="ftitle">AI-generated or human-made?</span>
+    <span class="fconf">52% 置信度</span>
+  </div>
+  <p class="concl">Likely human-made (confidence 52%). Pro: content slopes into a noise floor past 0.4 kHz (no cliff); human timing drift (jitter 0.210); real stereo image. Con: 13–18 kHz floor suspiciously flat (σ=0.24 dB)</p>
+  <table class="ev"><thead><tr><th>证据</th><th></th><th></th></tr></thead>
+  <tbody><tr><td class='m'>E1 rolloff</td><td class='v'>400</td><td class='d'>transport trust ×1.00 (bitrate 1411 kbps, sr 44100 Hz); cliff ratio 54.99</td></tr><tr><td class='m'>E2 air-band σ</td><td class='v'>0.24</td><td class='d'></td></tr><tr><td class='m'>E3 loudness spread</td><td class='v'>0.284</td><td class='d'></td></tr><tr><td class='m'>E4 onset jitter CV</td><td class='v'>0.2103</td><td class='d'></td></tr><tr><td class='m'>E5 stereo</td><td class='v'>L/R correlation 0.997 — narrow (near-mono); side/mid energy 0.04</td><td class='d'></td></tr></tbody></table>
+  
+  <ul class='caveats'><li>Heuristic evidence chain — not a trained classifier; a clean master faked through a lossy pipeline can flip every high-frequency cue.</li><li>See eval/RESULTS.md for measured accuracy on the synthetic self-test suite.</li></ul>
+</div>
+<footer>
+  Every conclusion above carries its measured evidence — that is the rea-audio contract,
+  inherited from <b>REA</b> (Reverse Engineer Anything).<br>
+  Heuristics, not certainties. Lossy codecs imitate parts of the AI fingerprint;
+  read the caveats before quoting a verdict. MIT licensed.
+</footer>
+</div></body></html>
