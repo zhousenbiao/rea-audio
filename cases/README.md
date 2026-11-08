@@ -1,11 +1,13 @@
 # Case files / 案例库
 
-Every directory here is one dissected track: `report.html` (human report) + `findings.json`
-(machine evidence) + `replication.md` (rebuild recipe).
+Every directory is one dissected track: `report.html` (human report) + `findings.json`
+(machine evidence) + `replication.md` (rebuild recipe). Audio files are deliberately
+not redistributed — only the case files.
 
 | case | one-line verdict |
 |---|---|
-| [`demo/`](demo/) | human-like synthetic render — correctly acquitted (HUMAN-MADE) |
+| [`real-world-v1/`](real-world-v1/) | 7 real tracks with verifiable provenance — Suno v5.5 **4/4 detected**, human controls **3/3 acquitted** ([results](real-world-v1/RESULTS.md)) |
+| [`demo/`](demo/) | synthetic human-like render — correctly acquitted (HUMAN-MADE) |
 
 ## Submit a dissection / 求拆解
 

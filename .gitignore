@@ -9,3 +9,7 @@ smoke.case/
 eval/fixtures/
 *.case/
 cases/demo/*.wav
+cases/**/*.mp3
+cases/**/*.flac
+cases/**/*.wav
+cases/**/*.ogg

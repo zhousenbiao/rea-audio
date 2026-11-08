@@ -1,0 +1,507 @@
+{
+  "source": "human_02.flac",
+  "meta": {
+    "sr": 96000,
+    "channels": 2,
+    "bpm": 196.71,
+    "rolloff_hz": 3400.0,
+    "band_shares": {
+      "sub": 0.00928840671384836,
+      "bass": 0.12428889941123711,
+      "low-mid": 0.2879014740303726,
+      "mid": 0.5033204146449585,
+      "high-mid": 0.06118986981760348,
+      "presence": 0.006205279412920824,
+      "brilliance": 0.0024290149468217215,
+      "air": 0.0010472223852612858,
+      "air_med": 0.0009154198920520395
+    },
+    "ai_verdict": "HUMAN-MADE"
+  },
+  "findings": [
+    {
+      "id": "format",
+      "title": "Container & stream facts",
+      "status": "FACT",
+      "conclusion": "FLAC PCM_24, 96000 Hz, 2ch, 84.5s, ~2165 kbps",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "metric": "container",
+          "value": "FLAC",
+          "unit": "",
+          "detail": "",
+          "snapshot": [],
+          "labels": []
+        },
+        {
+          "metric": "codec/subtype",
+          "value": "PCM_24",
+          "unit": "",
+          "detail": "",
+          "snapshot": [],
+          "labels": []
+        },
+        {
+          "metric": "sample rate",
+          "value": 96000,
+          "unit": "Hz",
+          "detail": "",
+          "snapshot": [],
+          "labels": []
+        },
+        {
+          "metric": "channels",
+          "value": 2,
+          "unit": "",
+          "detail": "",
+          "snapshot": [],
+          "labels": []
+        },
+        {
+          "metric": "duration",
+          "value": 84.53,
+          "unit": "s",
+          "detail": "",
+          "snapshot": [],
+          "labels": []
+        },
+        {
+          "metric": "mean bitrate",
+          "value": 2165,
+          "unit": "kbps",
+          "detail": "file size / duration; lossy codecs only — never proof of provenance by itself",
+          "snapshot": [],
+          "labels": []
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "tempo",
+      "title": "Tempo & feel",
+      "status": "FACT",
+      "conclusion": "196.7 BPM",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "metric": "autocorrelation peak BPM",
+          "value": 196.71,
+          "unit": "BPM",
+          "detail": "peak strength 0.53",
+          "snapshot": [],
+          "labels": []
+        },
+        {
+          "metric": "candidate peaks",
+          "value": [
+            196.7,
+            98.5,
+            65.5,
+            131.5
+          ],
+          "unit": "BPM",
+          "detail": "sorted by autocorrelation strength",
+          "snapshot": [],
+          "labels": []
+        },
+        {
+          "metric": "onset envelope std",
+          "value": 1.0,
+          "unit": "",
+          "detail": "rhythmic clarity proxy; near 1.0 after normalization means clear transients",
+          "snapshot": [],
+          "labels": []
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "key",
+      "title": "Key & chords",
+      "status": "FACT",
+      "conclusion": "Key: A minor; progression: Esus4 – Amin×2 – Asus4 – Esus4 – Fmaj7 – Dmin – Amin7 – Amin×2 – Bsus4 – Emin7 – Amin – Cmaj7 – Amin – C – Bsus4 – Emin×3",
+      "confidence": 0.8055472826526684,
+      "evidence": [
+        {
+          "metric": "key correlation",
+          "value": 0.806,
+          "unit": "r",
+          "detail": "Krumhansl-Schmuckler profile match",
+          "snapshot": [],
+          "labels": []
+        },
+        {
+          "metric": "runner-up keys",
+          "value": [
+            "E minor",
+            "A major",
+            "E major"
+          ],
+          "unit": "",
+          "detail": "r = 0.733; a close runner-up means the material is modally ambiguous",
+          "snapshot": [],
+          "labels": []
+        },
+        {
+          "metric": "global chroma (C..B)",
+          "value": [
+            0.088,
+            0.069,
+            0.084,
+            0.066,
+            0.118,
+            0.077,
+            0.079,
+            0.085,
+            0.069,
+            0.111,
+            0.065,
+            0.088
+          ],
+          "unit": "energy",
+          "detail": "",
+          "snapshot": [
+            0.08844983173549688,
+            0.0693930392574464,
+            0.08416910579023115,
+            0.06558978693467671,
+            0.11840637547121377,
+            0.07670828160230264,
+            0.07907294542137434,
+            0.08533073013826786,
+            0.06914664479748898,
+            0.11097564837621617,
+            0.06485224475476206,
+            0.08790536571704559
+          ],
+          "labels": [
+            "C",
+            "C#",
+            "D",
+            "D#",
+            "E",
+            "F",
+            "F#",
+            "G",
+            "G#",
+            "A",
+            "A#",
+            "B"
+          ]
+        },
+        {
+          "metric": "chord grid",
+          "value": 1.22,
+          "unit": "s/bar",
+          "detail": "4 beats @ analyzed tempo",
+          "snapshot": [],
+          "labels": []
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "stereo",
+      "title": "Stereo field",
+      "status": "FACT",
+      "conclusion": "L/R correlation 0.215 — very wide; side/mid energy 0.80",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "metric": "L/R correlation",
+          "value": 0.2154,
+          "unit": "r",
+          "detail": "",
+          "snapshot": [],
+          "labels": []
+        },
+        {
+          "metric": "side/mid RMS ratio",
+          "value": 0.803,
+          "unit": "",
+          "detail": "0 = pure mono, 0.2–0.6 common in mixes, >1 means phase-risky width",
+          "snapshot": [],
+          "labels": []
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "spectrum",
+      "title": "Spectral balance",
+      "status": "FACT",
+      "conclusion": "Rolloff(-35 dB) 3.4 kHz; dominant band: low-mid",
+      "confidence": 1.0,
+      "evidence": [
+        {
+          "metric": "rolloff frequency",
+          "value": 3400.0,
+          "unit": "Hz",
+          "detail": "",
+          "snapshot": [],
+          "labels": []
+        },
+        {
+          "metric": "air-band LTAS std",
+          "value": 1.44,
+          "unit": "dB",
+          "detail": "13–18 kHz roughness; analog noise floors wiggle more than synthetic ones",
+          "snapshot": [],
+          "labels": []
+        },
+        {
+          "metric": "band energies",
+          "value": {
+            "sub": 0.9,
+            "bass": 13.0,
+            "low-mid": 17.5,
+            "mid": 3.5,
+            "high-mid": -17.7,
+            "presence": -35.9,
+            "brilliance": -52.9,
+            "air": -61.5
+          },
+          "unit": "dB",
+          "detail": "",
+          "snapshot": [],
+          "labels": [
+            "sub: 0.9 dB",
+            "bass: 13.0 dB",
+            "low-mid: 17.5 dB",
+            "mid: 3.5 dB",
+            "high-mid: -17.7 dB",
+            "presence: -35.9 dB",
+            "brilliance: -52.9 dB",
+            "air: -61.5 dB"
+          ]
+        },
+        {
+          "metric": "LTAS snapshot",
+          "value": "",
+          "unit": "",
+          "detail": "long-term average spectrum, log-spaced decimation",
+          "snapshot": [
+            4.834086201131887,
+            9.043897684242786,
+            2.439444766417574,
+            -7.15808525350922,
+            -17.811634307295286,
+            -30.748555104441813,
+            -34.99773348169296,
+            -42.000250061297805,
+            -41.269769839520514,
+            -50.852383871755,
+            -54.27091153189542,
+            -51.31891369816251,
+            -53.95678859649341,
+            -56.30820161349325,
+            -57.12549341308238,
+            -56.657137092088504,
+            -59.045335255421215,
+            -59.74715162029994,
+            -59.34870772899324,
+            -60.57956442762876,
+            -61.057742043836015,
+            -62.108199542685114,
+            -63.02110053035163,
+            -63.798175551881144,
+            -63.40756130512307,
+            -63.97298982512715,
+            -63.73055033503923,
+            -65.2983463849422,
+            -66.4996509218315,
+            -66.82094471877664,
+            -67.46206900803709,
+            -66.68620587575106,
+            -67.54753854373999,
+            -68.3201674424998,
+            -68.53666958967814,
+            -68.8022248655545,
+            -68.7827823135215,
+            -68.55804828308766,
+            -68.76019992079476,
+            -68.69661124315046,
+            -68.77909856616384,
+            -68.51865021355265,
+            -68.43685216527686,
+            -68.58026211718807,
+            -68.46622907185976,
+            -68.23583572226043,
+            -68.20086490751369,
+            -68.22680710604635,
+            -68.05191962941166,
+            -67.89383355173317,
+            -67.85634834898418,
+            -67.57889539779443,
+            -67.45206009440197,
+            -67.49767855695261,
+            -67.09117153414422,
+            -66.80152943540142,
+            -66.79227907026603,
+            -66.28079009108185,
+            -66.23986375926737,
+            -66.37533062924328,
+            -66.26309130604933,
+            -66.29333207855241
+          ],
+          "labels": [
+            "0.1k",
+            "0.8k",
+            "1.6k",
+            "2.4k",
+            "3.1k",
+            "3.9k",
+            "4.7k",
+            "5.5k",
+            "6.2k",
+            "7.0k",
+            "7.8k",
+            "8.6k",
+            "9.3k",
+            "10.1k",
+            "10.9k",
+            "11.7k",
+            "12.4k",
+            "13.2k",
+            "14.0k",
+            "14.8k",
+            "15.6k",
+            "16.3k",
+            "17.1k",
+            "17.9k",
+            "18.6k",
+            "19.4k",
+            "20.2k",
+            "21.0k",
+            "21.8k",
+            "22.5k",
+            "23.3k",
+            "24.1k",
+            "24.9k",
+            "25.6k",
+            "26.4k",
+            "27.2k",
+            "27.9k",
+            "28.7k",
+            "29.5k",
+            "30.3k",
+            "31.1k",
+            "31.8k",
+            "32.6k",
+            "33.4k",
+            "34.1k",
+            "34.9k",
+            "35.7k",
+            "36.5k",
+            "37.2k",
+            "38.0k",
+            "38.8k",
+            "39.6k",
+            "40.4k",
+            "41.1k",
+            "41.9k",
+            "42.7k",
+            "43.5k",
+            "44.2k",
+            "45.0k",
+            "45.8k",
+            "46.5k",
+            "47.3k"
+          ]
+        }
+      ],
+      "caveats": []
+    },
+    {
+      "id": "structure",
+      "title": "Song structure",
+      "status": "HYPOTHESIS",
+      "conclusion": "9 sections: 0:00–0:10 mid energy | 0:10–0:19 mid energy | 0:19–0:27 mid energy | 0:27–0:39 mid energy | 0:39–0:48 mid energy | 0:48–0:56 mid energy | 0:56–1:05 mid energy | 1:05–1:13 mid energy | 1:13–1:24 mid energy",
+      "confidence": 0.55,
+      "evidence": [
+        {
+          "metric": "novelty boundaries",
+          "value": [
+            "10.4s",
+            "19.0s",
+            "27.8s",
+            "39.4s",
+            "48.0s",
+            "56.4s",
+            "65.2s",
+            "73.8s"
+          ],
+          "unit": "",
+          "detail": "chroma+spectral change points, min spacing 8 s",
+          "snapshot": [],
+          "labels": []
+        },
+        {
+          "metric": "section count",
+          "value": 9,
+          "unit": "",
+          "detail": "",
+          "snapshot": [],
+          "labels": []
+        }
+      ],
+      "caveats": [
+        "Section labels are energy-based guesses; a human would also use lyrics/instrumentation."
+      ]
+    },
+    {
+      "id": "ai_detect",
+      "title": "AI-generated or human-made?",
+      "status": "HYPOTHESIS",
+      "conclusion": "Likely human-made (confidence 65%). Pro: air band carries persistent content through 19 kHz (edge -3.2 dB, persistent share 0.0009); real stereo image. Con: -",
+      "confidence": 0.65,
+      "evidence": [
+        {
+          "metric": "E1 air-band edge",
+          "value": -3.2,
+          "unit": "dB",
+          "detail": "transport trust ×1.00 (bitrate 2165 kbps, sr 96000 Hz)",
+          "snapshot": [],
+          "labels": []
+        },
+        {
+          "metric": "E2 air-band σ",
+          "value": 1.44,
+          "unit": "dB",
+          "detail": "",
+          "snapshot": [],
+          "labels": []
+        },
+        {
+          "metric": "E3 loudness spread",
+          "value": 0.31,
+          "unit": "",
+          "detail": "",
+          "snapshot": [],
+          "labels": []
+        },
+        {
+          "metric": "E4 onset jitter CV",
+          "value": 0.7934,
+          "unit": "",
+          "detail": "",
+          "snapshot": [],
+          "labels": []
+        },
+        {
+          "metric": "E5 stereo",
+          "value": "L/R correlation 0.215 — very wide; side/mid energy 0.80",
+          "unit": "",
+          "detail": "",
+          "snapshot": [],
+          "labels": []
+        }
+      ],
+      "caveats": [
+        "Heuristic evidence chain — not a trained classifier; a clean master faked through a lossy pipeline can flip every high-frequency cue.",
+        "See eval/RESULTS.md for measured accuracy on the synthetic self-test suite."
+      ]
+    }
+  ]
+}

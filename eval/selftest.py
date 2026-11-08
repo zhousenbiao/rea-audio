@@ -143,7 +143,12 @@ def grade_ai(stereo_audio, expected):
     try:
         x, sr, ch = load_audio(tmp, mono=False)
         mono = x.mean(axis=1) if ch > 1 else x[:, 0]
-        transport = {"bitrate_kbps": 1400.0, "sr": sr, "stereo": {"mono_fake": False, "summary": "graded"}}
+        # same transport derivation as the real pipeline, so the fixture is
+        # graded under production logic, not a hand-me-down approximation
+        st = analyzers.stereo.analyze(x, sr)
+        mono_fake = any("numerically identical" in c for c in st.caveats)
+        transport = {"bitrate_kbps": 1400.0, "sr": sr, "codec": "WAV",
+                     "stereo": {"mono_fake": mono_fake, "summary": st.conclusion}}
         f = analyzers.ai_detect.analyze(mono, sr, transport)
         return getattr(f, "meta_verdict", "N/A"), f.conclusion
     finally:

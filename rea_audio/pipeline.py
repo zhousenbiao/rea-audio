@@ -23,9 +23,12 @@ def analyze_file(path: str, progress=None) -> CaseFile:
     fmt = analyzers.format_meta.analyze(path)
     case.add(fmt)
     bitrate_kbps = 0.0
+    codec = ""
     for e in fmt.evidence:
         if e.metric == "mean bitrate":
             bitrate_kbps = float(e.value or 0)
+        elif e.metric == "container":
+            codec = str(e.value or "")
 
     tick("loading audio")
     x_stereo, sr, channels = load_audio(path, mono=False)
@@ -56,7 +59,7 @@ def analyze_file(path: str, progress=None) -> CaseFile:
     case.add(analyzers.structure.analyze(mono, sr))
 
     tick("AI-generation vote")
-    transport = {"bitrate_kbps": bitrate_kbps, "sr": sr,
+    transport = {"bitrate_kbps": bitrate_kbps, "sr": sr, "codec": codec,
                  "stereo": {"mono_fake": mono_fake, "summary": stereo_summary}}
     ai_f = analyzers.ai_detect.analyze(mono, sr, transport)
     case.add(ai_f)

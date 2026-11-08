@@ -1,5 +1,7 @@
 # rea-audio · Reverse-engineer any audio
 
+![hero](docs/hero.gif)
+
 > Is this track AI-made? What BPM, what key, what chords, how was it mixed — and how do you rebuild it?
 > rea-audio breaks audio into **evidence-carrying conclusions** — every number traces back to findings.json, no vibes.
 
@@ -45,19 +47,26 @@ Not a black-box classifier — a vote over five **auditable evidence lines**:
 
 | # | Evidence | Votes AI | Votes human | Can be faked by |
 |---|---|---|---|---|
-| E1 | Dual-depth spectral rolloff (cliff vs slope) | −35 dB and −60 dB rolloffs coincide at 8–16.5 kHz (a cliff) | air band reaches 18.5 kHz+, or content slopes into a noise floor | low-bitrate MP3, low-sr sources (auto down-weighted) |
-| E2 | Air-band flatness | unnaturally smooth 13–18 kHz floor (σ<1.2 dB) | frequency-axis wiggle like a real noise floor | — |
+| E1 | Generation-band edge (16–19 kHz vs 13–15 kHz decay, calibrated on real tracks) | air band drops ≥15 dB (Suno v5 measured −19…−33 dB) | air band flat (human recordings measured −0.2…−4.5 dB) with persistent energy | low-bitrate MP3, low-sr sources (down-weighted by measured bandwidth) |
+| E2 | Air-band texture | — | analog-floor wiggle, once the air band demonstrably exists | — |
 | E3 | Loudness variance | short-term loudness near-constant | dynamics breathe | over-mastered human tracks |
-| E4 | Onset clocking | jitter CV<0.012 (quantized grid) | CV>0.03 (human drift) | quantized recordings |
+| E4 | Onset clocking | jitter CV<0.012 (quantized grid) | — | quantized recordings |
 | E5 | Stereo | numerically identical channels | real stereo image | — |
 
-**Transport down-weighting**: on lossless/high-bitrate files E1/E2 vote at full weight; MP3 <256 kbps drops to 0.6, <160 kbps to 0.25, source sample rate ≤32 kHz to 0.15 — lossy transport imitates the AI cliff, so the tool would rather abstain than accuse.
+**Transport down-weighting**: E1's trust is judged by the *measured* bandwidth — deep rolloff ≥17 kHz (the air band demonstrably survived transport) or lossless FLAC/WAV votes at full weight; MP3 scales 0.25–0.75 by bitrate; at source sample rates ≤32 kHz, E1 abstains. Lossy transport imitates the AI band fingerprint, so the tool would rather abstain than accuse.
 
 When evidence splits or total weight is thin, the verdict is `INCONCLUSIVE`. **That is a feature, not a failure.**
 
 ## Is it accurate?
 
-The self-test suite is built entirely from **synthetic signals with known ground truth** (fixed seeds, zero downloads, reproducible anywhere):
+**Real-track calibration** ([cases/real-world-v1/](cases/real-world-v1/RESULTS.md), verifiable provenance, audio deliberately not redistributed):
+
+| Group | Result | Dominant evidence (air-band edge) |
+|---|---|---|
+| Suno v5.5 ×4 (HF dataset `Kukedlc/suno-ai-music-dataset`, CC-BY-4.0, API metadata verified) | **4/4 detected AI** | −18.7…−32.9 dB (steep edge) |
+| Human-made ×3 (Wikimedia Commons PD/CC0 + Kevin MacLeod CC-BY-4.0) | **3/3 human, zero false positives** | −0.2…−4.5 dB (flat air band) |
+
+**Synthetic self-test** (mathematically generated ground truth, fixed seeds, zero downloads):
 
 ```bash
 python eval/selftest.py
@@ -65,7 +74,7 @@ python eval/selftest.py
 
 Current results ([eval/RESULTS.md](eval/RESULTS.md)): tempo 3/3, key 3/3, ai_detect 2/2.
 
-⚠️ Honest disclaimer: the fixtures are **deliberate archetypes** (clean studio-style render vs band-limited machine-style render). Real tracks sit between them — which is exactly why INCONCLUSIVE exists. Real-world calibration cases are welcome (see [cases/](cases/)).
+⚠️ Honest disclaimer: the human controls lean classical/acoustic while the AI set is pop/electronic — style and provenance are not fully decorrelated yet. Modern mastered-pop controls are especially welcome via issues. When evidence splits, the verdict is INCONCLUSIVE — a feature, not a failure.
 
 ## For agents (Claude Code / Codex / Cursor)
 
@@ -86,11 +95,13 @@ Pure numpy + soundfile + jinja2. No GPU, no model downloads, no network calls. A
 
 ## Roadmap
 
+- [x] Real-world calibration set (Suno v5.5 4/4, human controls 3/3 — [cases/real-world-v1/](cases/real-world-v1/))
+- [ ] Widen controls: modern mastered pop (decorrelate style from provenance)
 - [ ] demucs stem separation (per-stem verdicts, optional dependency)
-- [ ] vocal forensics: autotune traces, pacing, formant placement
+- [ ] Vocal forensics: autotune traces, pacing, formant placement
 - [ ] MCP server (matching the REA ecosystem integration style)
-- [ ] known AI-platform fingerprint library (Suno / Udio cliff signatures)
-- [ ] real-world calibration set with ROC curves
+- [ ] Other AI-platform fingerprints (Udio / Stable Audio edge signatures)
+- [ ] ROC curves and threshold sensitivity analysis
 
 ## Community: request a dissection
 

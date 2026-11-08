@@ -38,14 +38,30 @@ def measure(x: np.ndarray, sr: int) -> Dict[str, object]:
     band_db = {name: avg_db(lo, hi) for name, lo, hi in BANDS}
 
     # spectral rolloffs at two depths: the gap between them separates a
-    # gentle slope-with-noise-floor (human recordings) from a hard cliff
-    # (neural renders that simply stop).
+    # gentle slope-with-no-floor (human recordings) from a hard cliff
+    # (older neural renders that simply stop).
     def rolloff_at(depth_db: float) -> float:
-        below = ltas < (peak_db - depth_db)
-        return float(freqs[below.argmax()]) if below.any() else float(freqs[-1])
+        # last bin still above threshold — LTAS is non-monotonic (a piano dips
+        # mid-band then rises into the air/noise floor), so "first bin below"
+        # would report the dip, not where content actually ends
+        above = ltas > (peak_db - depth_db)
+        idx = np.where(above)[0]
+        return float(freqs[idx[-1]]) if len(idx) else 0.0
 
     rolloff = rolloff_at(35.0)   # shallow: where content fades below -35 dB
     rolloff_deep = rolloff_at(60.0)  # deep:   where even the noise floor dies
+
+    def band_mean(lo: float, hi: float) -> float:
+        b = (freqs >= lo) & (freqs < min(hi, sr / 2.0 - 500.0))
+        return float(ltas[b].mean()) if b.any() else float("nan")
+
+    # generation-band edge: modern neural renderers (Suno v5-era) carry content
+    # up to ~17 kHz but drop steeply after; human masters stay flat through the
+    # air band. air_slope = LTAS(16–19k) − LTAS(13–15k); air_decay is the same
+    # measured against 8–12 kHz.
+    air_slope = band_mean(16000, 19000) - band_mean(13000, 15000)
+    air_decay = band_mean(16000, 19000) - band_mean(8000, 12000)
+    air_floor = band_mean(13000, 15000) - peak_db   # how alive the pre-air band is
 
     # air-band flatness: std of LTAS 13k..18k — analog noise floors wiggle, synthetic ones often don't
     air_band = (freqs >= 13000) & (freqs <= min(18000, sr / 2.0 - 500))
@@ -59,12 +75,27 @@ def measure(x: np.ndarray, sr: int) -> Dict[str, object]:
         band = (freqs >= lo) & (freqs < min(hi, sr / 2.0))
         shares[name] = float(power[band].sum() / total)
 
+    # persistent air share: median over frames instead of mean — broadband
+    # transients (clicks, hats) splash energy into the air band for a few
+    # frames, but only a real noise floor / room tone / cymbal tail keeps it
+    # there in *most* frames
+    air_band_idx = (freqs >= 12000) & (freqs < min(20000, sr / 2.0))
+    if air_band_idx.any() and spec.shape[0] > 0:
+        air_frame = spec[:, air_band_idx].sum(axis=1)
+        tot_frame = spec.sum(axis=1) + 1e-12
+        shares["air_med"] = float(np.median(air_frame) / np.median(tot_frame))
+    else:
+        shares["air_med"] = 0.0
+
     return {
         "sr": sr, "nyquist": sr / 2.0,
         "ltas": ltas, "freqs": freqs,
         "peak_db": float(peak_db),
         "rolloff_hz": rolloff,
         "rolloff_deep_hz": rolloff_deep,
+        "air_slope_db": float(air_slope),
+        "air_decay_db": float(air_decay),
+        "air_floor_db": float(air_floor),
         "air_std_db": air_std,
         "band_db": band_db,
         "band_shares": shares,
